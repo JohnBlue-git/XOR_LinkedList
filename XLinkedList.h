@@ -1,10 +1,41 @@
-
 /*
 Auther: John Blue
 Time: 2022/6
 Platform: ATOM with MinGw and g++compiler
 Object: Template XOR_Doubly_LinkedList
 Disclaimer: The std::string LinkedList haven't been consider throughly in this scope
+
+
+
+	結構 ad/link
+      a                           b                           c                                d
+0 xor b.ad   a.ad xor c.ad   b.ad xor d.ad   (default) c.ad xor 0
+	forward
+0 xor a.link = b.ad
+a xor b.link = c.ad
+...
+	backward
+0 xor d.link = c.ad
+d xor c.link = b.ad
+...
+所以是一種極大化節省空間的雙鍊結
+
+
+	insertion from head
+insert a: a/0   <head>
+insert b: a/0 xor b.ad   b/a.ad   <head>
+insert c: a/0 xor b.ad   b/a.ad xor c.ad   c/b.ad   <head>
+
+	insertion from end
+insert a: <head>   a/0   <end>
+insert b: <head>   a/b.ad   b/a.ad   <end>
+insert c: <head>   a/b.ad   b/a.ad xor c.ad   c/b.ad   <end>
+
+	pop from front
+     : <head>   a/b.ad   b/a.ad xor c.ad   c/b.ad   <end>
+pop a: <head>   b/a.ad xor a.ad xor c.ad   c/b.ad   <end>
+pop b: <head>   c/b.ad xor b.ad   <end>
+pop c: <head>      <end>
 */
 
 #include <iostream>// for basic i/o

@@ -72,20 +72,6 @@ public:
 	~ListNode() {
     data = 0;
     link = 0;
-    // or you can use another method
-    //https://stackoverflow.com/questions/34170164/destructor-for-binary-search-tree
-    //data = 0;
-    //delete link;
-    //caution the chain reaction when a node is deleted
-    //for example: pop current->... then current->link = 0 then delete current (to prevent further delete)
-    //and it will simplified deconstructor
-    /*
-    ~LinkedList() {
-      delete first;
-      end = 0;
-      size = 0;
-    }
-    */
   }
 
   // !!! must be public for derived LinkedList

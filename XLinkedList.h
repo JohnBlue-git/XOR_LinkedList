@@ -114,18 +114,18 @@ public:
 
 	// function
 	bool isEmpty() const;// check empty
-  ListNode<T>* root() const;// root of list
+  	ListNode<T>* root() const;// root of list
 	int length() const;// size of list
-  void Reverse_PrintList() const;// print list
+  	void Reverse_PrintList() const;// print list
 	void PrintList() const;// print list
 	void Clear();// clear list
 	void Push_back(T x);// add entity
 	void Push_front(T x);// add entity
-  T Pop_front();// pop entity
-  // inline
-  //static inline ListNode<T>* XOR(uintptr_t a, uintptr_t b) { return a ^ b; }
-  static inline ListNode<T>* XOR(uintptr_t a, uintptr_t b) { return (ListNode<T>*)(a ^ b); }
-  // tran
+  	T Pop_front();// pop entity
+	// inline
+	//static inline ListNode<T>* XOR(uintptr_t a, uintptr_t b) { return a ^ b; }
+	static inline ListNode<T>* XOR(uintptr_t a, uintptr_t b) { return (ListNode<T>*)(a ^ b); }
+	// tran
 	LinkedList transverse() const;// transverse
 
 	// exception class
@@ -152,14 +152,14 @@ template<class T>
 LinkedList<T>::LinkedList(const LinkedList<T>& copy): first(0), end(0) {
 	// copy content
 	ListNode<T>* current = copy.first;
-  ListNode<T>* prev = 0;
-  ListNode<T>* next;
+	ListNode<T>* prev = 0;
+	ListNode<T>* next;
 	while (current != 0) {
 		this->Push_back(current->data);
 		// iteration
-    next = XOR((uintptr_t)prev, (uintptr_t)current->link);
-    prev = current;
-    current = next;
+		next = XOR((uintptr_t)prev, (uintptr_t)current->link);
+		prev = current;
+		current = next;
 	}
 }
 
@@ -178,14 +178,14 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& copy) {
 	this->Clear();
 	// copy content
 	ListNode<T>* current = copy.first;
-  ListNode<T>* prev = 0;
-  ListNode<T>* next;
+	ListNode<T>* prev = 0;
+	ListNode<T>* next;
 	while (current) {
 		this->Push_back(current->data);
 		// iteration
-    next = XOR((uintptr_t)prev, (uintptr_t)current->link);
-    prev = current;
-    current = next;
+	        next = XOR((uintptr_t)prev, (uintptr_t)current->link);
+	        prev = current;
+	        current = next;
 	}
 	// return
 	return *this;
@@ -203,13 +203,13 @@ T& LinkedList<T>::operator[](const unsigned int x) {
 	}
 	// extract out the i th item
 	ListNode<T>* current = first;         // point to first
-  ListNode<T>* prev = 0;
-  ListNode<T>* next;
+	ListNode<T>* prev = 0;
+	ListNode<T>* next;
 	unsigned int i = 0;
 	while (i < x) {
-    next = XOR((uintptr_t)prev, (uintptr_t)current->link);
-    prev = current;
-    current = next;
+		next = XOR((uintptr_t)prev, (uintptr_t)current->link);
+		prev = current;
+		current = next;
 		i++;
 	}
 	return current->data;
@@ -241,8 +241,8 @@ void LinkedList<T>::Reverse_PrintList() const {
 		throw bad_empty("Reverse_PrintList()");
 	}
 	ListNode<T>* current = end;             // point to first
-  ListNode<T>* prev = 0;
-  ListNode<T>* next;
+ 	ListNode<T>* prev = 0;
+  	ListNode<T>* next;
 	std::cout << "R List: ";
 	while (current != 0) {                    // execute to last NULL
 		if (typeid(T) == typeid(double)) {
@@ -251,10 +251,10 @@ void LinkedList<T>::Reverse_PrintList() const {
 		else if (typeid(T) == typeid(int) || typeid(T) == typeid(float) || typeid(T) == typeid(std::string)) {
 			std::cout << current->data << " ";
 		}
-    // iteration
-    next = XOR((uintptr_t)prev, (uintptr_t)current->link);
-    prev = current;
-    current = next;
+	       // iteration
+	       next = XOR((uintptr_t)prev, (uintptr_t)current->link);
+	       prev = current;
+	       current = next;
 	}
 	std::cout << std::endl;
 }
@@ -265,8 +265,8 @@ void LinkedList<T>::PrintList() const {
 		throw bad_empty("PrintList()");
 	}
 	ListNode<T>* current = first;             // point to first
-  ListNode<T>* prev = 0;
-  ListNode<T>* next;
+	ListNode<T>* prev = 0;
+	ListNode<T>* next;
 	std::cout << "List: ";
 	while (current != 0) {                    // execute to last NULL
 		if (typeid(T) == typeid(double)) {
@@ -275,10 +275,10 @@ void LinkedList<T>::PrintList() const {
 		else if (typeid(T) == typeid(int) || typeid(T) == typeid(float) || typeid(T) == typeid(std::string)) {
 			std::cout << current->data << " ";
 		}
-    // iteration
-    next = XOR((uintptr_t)prev, (uintptr_t)current->link);
-    prev = current;
-    current = next;
+	        // iteration
+	        next = XOR((uintptr_t)prev, (uintptr_t)current->link);
+	        prev = current;
+	        current = next;
 	}
 	std::cout << std::endl;
 }
@@ -289,13 +289,13 @@ std::ostream& operator<<(std::ostream& os, const LinkedList<T>& print) {
 	if (print.first == 0) {                         // if list is empty
 		// not yet know what to implment exception for operator
 		//return os << print.bad_empty("operator<<");
-    os << "operator<<, Empty error in List object\n";
-    return os;
+	    os << "operator<<, Empty error in List object\n";
+	    return os;
 	}
 	// print out
 	ListNode<T>* current = print.first;             // point to first
-  ListNode<T>* prev = 0;
-  ListNode<T>* next;
+	ListNode<T>* prev = 0;
+	ListNode<T>* next;
 	os << "List: ";
 	while (current != 0) {                          // execute to last NULL
 		if (typeid(T) == typeid(double)) {
@@ -316,15 +316,15 @@ std::ostream& operator<<(std::ostream& os, const LinkedList<T>& print) {
 template<class T>
 void LinkedList<T>::Clear() {
 	ListNode<T>* current;
-  ListNode<T>* prev = 0;
-  ListNode<T>* next;
+	ListNode<T>* prev = 0;
+	ListNode<T>* next;
 	while (first != 0) {
 		current = first;
-    next = XOR((uintptr_t)prev, (uintptr_t)first->link);
-    prev = first;
-    first = next;
+		next = XOR((uintptr_t)prev, (uintptr_t)first->link);
+		prev = first;
+		first = next;
 		// !!! delete and prevent bug
-    current->link = 0;
+    		current->link = 0;
 		delete current;
 		current = 0;
 	}
@@ -346,7 +346,7 @@ void LinkedList<T>::Push_back(T x) {
 	}
 	else {                                     // link new node to end pointer
 		newNode->link = end;                // default link for new node
-    end->link = XOR((uintptr_t)end->link, (uintptr_t)newNode);// update previous link
+    		end->link = XOR((uintptr_t)end->link, (uintptr_t)newNode);// update previous link
 		end = newNode;
 	}
 	// increase size number
@@ -363,8 +363,8 @@ void LinkedList<T>::Push_front(T x) {
 		end = newNode;
 	}
 	else {                                     // link new node to end pointer
-    newNode->link = first;                // default link for new node
-    first->link = XOR((uintptr_t)first->link, (uintptr_t)newNode);// update previous link
+    		newNode->link = first;                // default link for new node
+    		first->link = XOR((uintptr_t)first->link, (uintptr_t)newNode);// update previous link
 		first = newNode;
 	}
 	// increase size number
@@ -399,14 +399,14 @@ LinkedList<T> LinkedList<T>::transverse() const {
 	LinkedList<T> RT;
 	// copy content
 	ListNode<T>* current = first;
-  ListNode<T>* prev = 0;
-  ListNode<T>* next;
+  	ListNode<T>* prev = 0;
+  	ListNode<T>* next;
 	while (current != 0) {
 		RT.Push_front(current->data);
 		// iteration
-    next = XOR((uintptr_t)prev, (uintptr_t)current->link);
-    prev = current;
-    current = next;
+    		next = XOR((uintptr_t)prev, (uintptr_t)current->link);
+    		prev = current;
+    		current = next;
 	}
 	// return
 	return RT;
